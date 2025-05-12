@@ -50,3 +50,14 @@ class BDD:
         if not website:
             return 0
         return website.get("PageRank")
+    
+    def get_infos_for_urls(self, urls):
+        infos = {}
+        cursor = self.collection.find({"url": {"$in": urls}})
+        for doc in cursor:
+            infos[doc["url"]] = {
+                "PageRank": doc.get("PageRank", 0),
+                "titles": doc.get("titles", ""),
+                "url": doc.get("url", "")
+            }
+        return infos

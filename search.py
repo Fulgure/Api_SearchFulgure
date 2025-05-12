@@ -38,22 +38,11 @@ class Search:
                 print(f"URL '{url}' not found in all_webpages")
 
         return tf_idf_scores
-    
-    def get_infos_for_urls(self, urls):
-        infos = {}
-        cursor = self.collection.find({"url": {"$in": urls}})
-        for doc in cursor:
-            infos[doc["url"]] = {
-                "PageRank": doc.get("PageRank", 0),
-                "titles": doc.get("titles", ""),
-                "url": doc.get("url", "")
-            }
-        return infos
 
     def combine_with_pagerank(self, website):
         combined_scores = {}
         urls = list(website.keys())
-        infos = self.get_infos_for_urls(urls)  # une seule requête pour tous
+        infos = self.bdd.get_infos_for_urls(urls)  # une seule requête pour tous
 
         for url, score in website.items():
             website_infos = infos.get(url, {})
