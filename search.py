@@ -53,7 +53,7 @@ class Search:
     def combine_with_pagerank(self, website):
         combined_scores = {}
         urls = list(website.keys())
-        infos = self.bdd.get_infos_for_urls(urls)  # une seule requête pour tous
+        infos = self.get_infos_for_urls(urls)  # une seule requête pour tous
 
         for url, score in website.items():
             website_infos = infos.get(url, {})
