@@ -53,7 +53,7 @@ class BDD:
     
     def get_infos_for_urls(self, urls):
         infos = {}
-        cursor = self.collection.find({"url": {"$in": urls}})
+        cursor = self.webpages.find({"url": {"$in": urls}})
         for doc in cursor:
             infos[doc["url"]] = {
                 "PageRank": doc.get("PageRank", 0),
