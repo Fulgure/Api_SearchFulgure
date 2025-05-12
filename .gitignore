@@ -1,3 +1,18 @@
-.env
+# Environnement virtuel
+venv/
+env/
+
+# Bytecode Python
 __pycache__/
 *.pyc
+*.pyo
+
+# Fichiers de configuration ou secrets
+.env
+
+# Fichiers temporaires
+*.log
+*.tmp
+
+# IDEs / éditeurs
+.vscode/
