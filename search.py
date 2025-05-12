@@ -48,7 +48,8 @@ class Search:
             website_infos = infos.get(url, {})
             combined_scores[url] = [
                 self.PONDERATION_TF_IDF * score + self.PONDERATION_PAGERANK * website_infos.get("PageRank", 0), 
-                website_infos.get("titles"), 
+                website_infos.get("title"),
+                website_infos.get("description"),
                 website_infos.get("url")
             ]
         return combined_scores

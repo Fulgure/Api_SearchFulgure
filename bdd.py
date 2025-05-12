@@ -57,7 +57,8 @@ class BDD:
         for doc in cursor:
             infos[doc["url"]] = {
                 "PageRank": doc.get("PageRank", 0),
-                "titles": doc.get("titles", ""),
+                "title": doc.get("title", ""),
+                "description": doc.get("description", ""),
                 "url": doc.get("url", "")
             }
         return infos
