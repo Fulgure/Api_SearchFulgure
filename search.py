@@ -41,10 +41,12 @@ class Search:
 
     def combine_with_pagerank(self, website):
         combined_scores = {}
+        urls = list(website.keys())
+        infos = self.bdd.get_infos_for_urls(urls)  # une seule requête pour tous
 
-        for website, score in website.items():
-            website_infos = self.bdd.get_info_for(website)
-            combined_scores[website] = [
+        for url, score in website.items():
+            website_infos = infos.get(url, {})
+            combined_scores[url] = [
                 self.PONDERATION_TF_IDF * score + self.PONDERATION_PAGERANK * website_infos.get("PageRank", 0), 
                 website_infos.get("titles"), 
                 website_infos.get("url")
