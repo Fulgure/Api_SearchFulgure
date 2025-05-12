@@ -46,13 +46,13 @@ class Search:
 
         for url, score in website.items():
             website_infos = infos.get(url, {})
-            combined_scores[url] = [
-                self.PONDERATION_TF_IDF * score + self.PONDERATION_PAGERANK * website_infos.get("PageRank", 0), 
-                website_infos.get("title"),
-                website_infos.get("description"),
-                website_infos.get("url")
-            ]
-        return combined_scores
+            combined_scores[url] = {
+                "score": self.PONDERATION_TF_IDF * score + self.PONDERATION_PAGERANK * website_infos.get("PageRank", 0),
+                "title": website_infos.get("title"),
+                "description": website_infos.get("description"),
+                "url": website_infos.get("url")
+            }
+            return combined_scores
 
     def process_term(self, term, all_tf_idf):
         tf_idf = self.search_term(term)
