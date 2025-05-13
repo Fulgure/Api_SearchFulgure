@@ -7,7 +7,7 @@ import uvicorn
 s = Search()
 app = FastAPI()
 
-@app.get("/search/v1?q={query}")
+@app.get("/v1/search?q={query}")
 async def search(query: str):
     return s.search(query)
 
