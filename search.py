@@ -93,6 +93,11 @@ class Search:
         else:
             tf_idf = self.search_terms(query, limit)
         print(tf_idf)
-        results = sorted(self.combine_with_pagerank(tf_idf).values(), key=lambda x: x["score"], reverse=True)
+        combined = self.combine_with_pagerank(tf_idf)
+
+        if not combined:  # attrape None, {} ou tout objet "vide"
+            return []
+
+        results = sorted(combined.values(), key=lambda x: x["score"], reverse=True)
         print(f"la recherche prend {time.time() - debut} secondes")
         return results
